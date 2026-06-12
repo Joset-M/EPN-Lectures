@@ -6,9 +6,9 @@
 
 #+title: Taller — Máquina IAS / Von Neumann
 #+subtitle: ICCD332 Arquitectura de Computadores
-#+author: [Nombres de los integrantes del grupo]
-#+email: lenin.falconi@epn.edu.ec
-#+date: [Fecha de entrega]
+#+author: Anthony Erazo, Dylan Zuñiga, Joset Muela
+#+email: joset.muela@epn.edu.ec
+#+date: 2026-06-12
 #+language: es
 #+creator: Emacs 27.1 (Org mode 9.7.5)
 #+cite_export: biblatex
@@ -115,6 +115,20 @@ sobre las palabras clave.
     00000010 & 0x02       &  LOAD M(X)        & $[AC]\leftarrow[X]$\\
     00000011 & 0x03       &  LOAD |M(X)|      & $[AC]\leftarrow|[X]|$\\
     00000100 & 0x04       &  LOAD -|M(X)|     & $[AC]\leftarrow-|[X]|$\\
+    00000101 & 0x05       &  ADD M(X)         & $[AC]\leftarrow[AC]+[X]$\\
+    00000111 & 0x07       &  ADD |M(X)|       & $[AC]\leftarrow[AC]+|[X]|$\\
+    00000110 & 0x06       &  SUB M(X)         & $[AC]\leftarrow[AC]-[X]$\\
+    00001000 & 0x08       &  SUB |M(X)|       & $[AC]\leftarrow[AC]-|[X]|$\\
+    00001011 & 0x0B       &  MUL M(X)         & $[AC, MQ]\leftarrow[MQ]\times[X]$\\
+    00001100 & 0x0C       &  DIV M(X)         & $[MQ]\leftarrow[AC]\div[X], [AC]\leftarrow\text{resto}$\\
+    00001101 & 0x0D       &  JUMP M(X,0:19)   & $[PC]\leftarrow X\text{ (izq)}$\\
+    00001110 & 0x0E       &  JUMP M(X,20:39)  & $[PC]\leftarrow X\text{ (der)}$\\
+    00001111 & 0x0F       &  JUMP+ M(X,0:19)  & $\text{if } [AC] \ge 0 \text{ then } [PC]\leftarrow X\text{ (izq)}$\\
+    00010000 & 0x10       &  JUMP+ M(X,20:39) & $\text{if } [AC] \ge 0 \text{ then } [PC]\leftarrow X\text{ (der)}$\\
+    00010100 & 0x14       &  LSH              & $[AC]\leftarrow[AC]\times 2$\\
+    00010101 & 0x15       &  RSH              & $[AC]\leftarrow[AC]\div 2$\\
+    00010010 & 0x12       &  STOR M(X,8:19)   & $[X\text{ (dir. izq)}]\leftarrow[AC](28:39)$\\
+    00010011 & 0x13       &  STOR M(X,28:39)  & $[X\text{ (dir. der)}]\leftarrow[AC](28:39)$\\
     \hline
   \end{tabular}
 \end{table}
@@ -193,13 +207,13 @@ LOAD M(940)
 
 Complete la información de los integrantes del grupo.
 
-|-----------------+-------------------------+-------------|
-| Nombre          | Email                   | Rol         |
-|-----------------+-------------------------+-------------|
-|                 |                         |             |
-|                 |                         |             |
-|                 |                         |             |
-|-----------------+-------------------------+-------------|
+|---------------+------------------------+-------------|
+| Nombre        | Email                  | Rol         |
+|---------------+------------------------+-------------|
+| Joset Muela   | joset.muela@epn.edu.ec | lider       |
+| Anthony Erazo |                        | colaborador |
+| Dylan Zuñiga  |                        | colaborador |
+|---------------+------------------------+-------------|
 
 * Verificación de Entregables [0%]
 
