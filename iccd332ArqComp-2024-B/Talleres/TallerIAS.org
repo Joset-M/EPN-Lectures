@@ -191,8 +191,14 @@ RTL.
 Escriba en notación de transferencia de registros el programa que
 ejecuta el computador IAS.
 
- - $[AC] \leftarrow [940]$
- - ...
+- $[AC] \leftarrow [940]$
+ - $[AC] \leftarrow [AC] -[941]$
+ - $[940] \leftarrow [AC]$
+ - $[AC] \leftarrow [AC]\times 2$
+ - $[941] \leftarrow [AC]$
+ - $[AC] \leftarrow -[940]$
+ - $[940] \leftarrow [AC]$
+ - $[IR] \leftarrow HALT$
 
 
 *** Código Assembler
@@ -201,6 +207,16 @@ Escriba el código Assembler del programa que ejecuta el computador IAS.
 
 #+begin_src
 LOAD M(940)
+SUB M(941)
+
+STOR M(940)
+LSH
+
+STOR M(941)
+LOAD -M(940)
+
+STOR M(940)
+HALT
 
 #+end_src
 
@@ -208,13 +224,13 @@ LOAD M(940)
 
 Complete la información de los integrantes del grupo.
 
-|---------------+------------------------+-------------|
-| Nombre        | Email                  | Rol         |
-|---------------+------------------------+-------------|
-| Joset Muela   | joset.muela@epn.edu.ec | lider       |
-| Anthony Erazo |                        | colaborador |
-| Dylan Zuñiga  |                        | colaborador |
-|---------------+------------------------+-------------|
+|---------------+-------------------------+-------------|
+| Nombre        | Email                   | Rol         |
+|---------------+-------------------------+-------------|
+| Joset Muela   | joset.muela@epn.edu.ec  | lider       |
+| Anthony Erazo |                         | colaborador |
+| Dylan Zuñiga  | dylan.zuniga@epn.edu.ec | colaborador |
+|---------------+-------------------------+-------------|
 
 * Verificación de Entregables [0%]
 
