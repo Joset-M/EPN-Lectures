@@ -232,7 +232,7 @@ Complete la información de los integrantes del grupo.
 | Dylan Zuñiga  | dylan.zuniga@epn.edu.ec  | colaborador |
 |---------------+------------------------- +-------------|
 
-* Verificación de Entregables [0%]
+* Verificación de Entregables [100%]
 
 Ejecute ~C-c C-c~ sobre los ítems de tarea según se hayan cumplido o
 no. Si un ítem no pudo realizarse, anote en la sección de problemas
