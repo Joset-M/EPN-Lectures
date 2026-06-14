@@ -171,20 +171,21 @@ RTL.
 1. ¿Qué resultado se tiene al final en el registro del acumulador?
 
    Respuesta:
-   $[AC] \leftarrow ???$
+   $[AC] \leftarrow 0xFFFFFFFFFD$
 
 2. ¿Se sobrescribe algún registro como resultado de la ejecución? Si
    es verdadero, indique qué registro y con qué valor.
    Respuesta:
-   - $[940] \leftarrow ???$
-   - $[941] \leftarrow ???$
-   - $[AC] \leftarrow ???$
+   - $[940] \leftarrow 0x0000000003$
+   - $[941] \leftarrow 0x0000000006$
+   - $[AC] \leftarrow 0xFFFFFFFFFD$
 
 3. ¿Cuál es el valor del bit de Carry? ¿Qué operación modifica el bit?
    Respuesta:
-   - $Carry = ???$
+   - $Carry = 1$
 
-   - 
+   - $[AC] \leftarrow [AC]-[941]$
+     $[AC] \leftarrow 0x0000000005-0x0000000002$
 
 *** Código RTL
 
@@ -192,7 +193,7 @@ Escriba en notación de transferencia de registros el programa que
 ejecuta el computador IAS.
 
 - $[AC] \leftarrow [940]$
- - $[AC] \leftarrow [AC] -[941]$
+ - $[AC] \leftarrow [AC]-[941]$
  - $[940] \leftarrow [AC]$
  - $[AC] \leftarrow [AC]\times 2$
  - $[941] \leftarrow [AC]$
