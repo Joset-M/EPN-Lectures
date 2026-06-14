@@ -185,7 +185,7 @@ RTL.
    - $Carry = 1$
 
    - $[AC] \leftarrow [AC]-[941]$
-     $[AC] \leftarrow 0x0000000005-0x0000000002$
+   - $[AC] \leftarrow 0x0000000005-0x0000000002$
 
 *** Código RTL
 
