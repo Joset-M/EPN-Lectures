@@ -1,0 +1,144 @@
+% Created 2026-06-19 Fri 01:47
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+
+\usepackage{fancyhdr}
+\usepackage[top=25mm, left=25mm, right=25mm]{geometry}
+\usepackage{longtable}
+\fancyhead[R]{}
+\setlength\headheight{43.0pt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, ]{babel}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{/home/josetm-epn/MI-REPO/EPN-Lectures/iccd332ArqComp-2024-B/FormatoTareas/bibliography.bib}
+\author{Joset Nicoly Muela Criollo}
+\date{2026-06-17}
+\title{Plantilla para Toma de Notas en Clase}
+\hypersetup{
+ pdfauthor={Joset Nicoly Muela Criollo},
+ pdftitle={Plantilla para Toma de Notas en Clase},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.7.5)}, 
+ pdflang={Español}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\fancyhead[C]{\includegraphics[scale=0.05]{./logoEPN.jpg}\\
+ESCUELA POLITÉCNICA NACIONAL\\FACULTAD DE INGENIERÍA DE SISTEMAS\\
+ARQUITECTURA DE COMPUTADORES}
+\thispagestyle{fancy}
+\section{2026-06-17 Elemento de Diseño de un Bus}
+\label{sec:org8800bb0}
+\subsection{Preguntas y Términos clave (Cue):}
+\label{sec:org000433e}
+\begin{description}
+\item[{¿Qué clasifica a un bus dedicado de uno multiplexado?}] 
+
+\item[{Tipos de Arbitraje}] 
+
+\item[{Temporización Síncrona vs Asíncrona}] 
+
+\item[{Importancia del ancho del bus}] 
+
+\item[{Tipos de transferencia de datos}] 
+\end{description}
+\subsection{Notas (Notes):}
+\label{sec:org2a77723}
+\begin{itemize}
+\item \textbf{Clasificación por Tipo de Líneas}:
+\begin{itemize}
+\item \emph{Dedicadas}: Líneas físicas asignadas perman
+entemente a una función ,buses independientes para datos y
+direcciones. Ofrecen alto rendimiento pero incrementan el espacio
+y costo.
+\item \emph{Multiplexadas en el tiempo}: Las mismas líneas físicas se
+comparten para distintas funciones en instantes de tiempo
+diferentes, la misma línea envía la dirección al inicio del
+ciclo y luego el dato. Ahorra pines y espacio, pero ralentiza el
+sistema al requerir circuitos lógicos más complejos.
+\end{itemize}
+\item \textbf{Métodos de Arbitraje (Control del medio compartido)}:
+\begin{itemize}
+\item \emph{Centralizado}: Existe un único hardware dedicado, llamado
+controlador del bus o árbitro, que recibe las peticiones y concede
+el acceso al bus.
+\item \emph{Distribuido}: No existe un nodo central. Los módulos incluyen
+lógica de control propia y cooperan conjuntamente para decidir el
+acceso mediante algoritmos distribuidos.
+\end{itemize}
+\item \textbf{Esquemas de Temporización}:
+\begin{itemize}
+\item \emph{Síncrona}: Las acciones en el bus están regidas por una señal de
+reloj global (tren de pulsos lógicos \(0\) y \(1\)). Todos los
+dispositivos se sincronizan con este reloj. Es rápida y simple,
+pero obliga a que todo el bus trabaje a la velocidad del
+dispositivo más lento.
+\item \emph{Asíncrona}: No depende de un reloj. La secuencia de eventos
+ocurre mediante un protocolo de "saludo" o \emph{handshaking} (un
+evento dispara el siguiente: Petición \(\rightarrow\)
+Confirmación). Es altamente flexible para mezclar dispositivos
+rápidos y lentos, pero su hardware de control es complejo.
+\end{itemize}
+\item \textbf{Ancho del Bus}:
+\begin{itemize}
+\item \emph{Bus de Datos}: Un mayor número de líneas físicas paralelas
+permite transmitir palabras de datos más grandes en un solo ciclo,
+impactando directamente en el rendimiento global.
+\item \emph{Bus de Direcciones}: El ancho de este bus limita físicamente el
+rango máximo de memoria principal direccionable directamente por
+la CPU (\(2^{\text{ancho}}\) bytes).
+\begin{itemize}
+\item \textbf{Tipos de Transferencia de Datos}:
+\end{itemize}
+\item \emph{Lectura} y \emph{Escritura} clásicas de memoria o E/S.
+\item \emph{Lectura-Modificación-Escritura}: Operación atómica (no
+interrumpible) donde se lee un dato, se modifica y se reescribe
+inmediatamente; fundamental para la sincronización de hilos o
+semáforos en el Sistema Operativo.
+\end{itemize}
+\end{itemize}
+
+\subsection{Enlaces de Interés}
+\label{sec:org0cc9ab5}
+\begin{itemize}
+\item\relax [[\url{https://lsc.cornell.edu/how-to-study/taking-notes/cornell-note-taking-system/}][
+\item \href{https://biblioteca.univalle.edu.ni/files/original/c1b1f5d1c12abc60a246e2a0d784f7c9d163ee81.pdf}{Libro William Stallings}
+\end{itemize}
+\subsection{Resumen (Summary):}
+\label{sec:org7229102}
+El diseño de un bus implica un balance de ingeniería entre costo,
+espacio físico y rendimiento computacional. Los parámetros clave
+definidos por Stallings determinan la flexibilidad y velocidad del
+sistema: el arbitraje gestiona la competencia por el recurso
+compartido; la temporización define el método de coordinación lógica
+(reloj rígido vs handshake flexible); y el tipo de líneas (dedicadas o
+multiplexadas) junto al ancho físico determinan directamente las
+capacidades máximas de transferencia de datos y de direccionamiento de
+memoria del computador.
+
+
+
+\section{{\bfseries\sffamily TODO} Mis Tareas [100\%]}
+\label{sec:orgbdd17e2}
+\begin{itemize}
+\item[{$\boxtimes$}] Leer este documento
+\item[{$\boxtimes$}] Escribir el resumen  de la exposición 1
+\end{itemize}
+
+\printbibliography
+\end{document}

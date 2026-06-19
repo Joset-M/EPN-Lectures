@@ -1,4 +1,4 @@
-% Created 2026-06-12 Fri 21:48
+% Created 2026-06-14 Sun 20:28
 % Intended LaTeX compiler: pdflatex
 \documentclass{article}
 \usepackage[utf8]{inputenc}
@@ -44,7 +44,7 @@ ARQUITECTURA DE COMPUTADORES}
 \thispagestyle{fancy}
 
 \section{Objetivos}
-\label{sec:org614d75b}
+\label{sec:org5adc334}
 
 \begin{itemize}
 \item Comprender el ciclo de captación, decodificación y ejecución de la
@@ -56,19 +56,19 @@ para determinar el estado final de los registros.
 \end{itemize}
 
 \section{Instrucciones}
-\label{sec:org802ac83}
+\label{sec:org06b9cfe}
 
 Complete las solicitudes del taller y suba el archivo \texttt{.org} y \texttt{.pdf}
 al aula virtual. Use las combinaciones de teclado para trabajar en Emacs.
 
 \section{Recursos}
-\label{sec:orgd7aac10}
+\label{sec:org54b72c4}
 
 Para este taller consulte el libro \citetitle{stallings2006esp}
 disponible en \href{https://epnecuador-my.sharepoint.com/:f:/g/personal/lenin\_falconi\_epn\_edu\_ec/EgjH2RoedD5NuswqpOt8ExsB\_DE052v9Rlrg0QpEtbimDg?e=WoqexR}{EPN-SHAREPOINT (Clic aquí)} y use su WSL con Emacs para editar el archivo.
 
 \subsection{Observaciones y Recomendaciones}
-\label{sec:orgf087f10}
+\label{sec:org8af3285}
 \begin{itemize}
 \item Tenga en cuenta la ruta a las imágenes y a la bibliografía. Se le
 recomienda que realice una clonación o un fork del repositorio de la
@@ -78,7 +78,7 @@ estar operativa y funcional (es decir, Emacs, \LaTeX).
 \end{itemize}
 
 \section{Taller: Máquina de Von Neumann}
-\label{sec:org7d92561}
+\label{sec:orga413587}
 
 La máquina de Von Neumann realiza operaciones en un ciclo repetitivo de
 \textbf{captación}, \textbf{decodificación} y \textbf{ejecución}. Para esto, el computador
@@ -91,7 +91,7 @@ primeros bits de cada parte corresponden al \emph{opcode} y los restantes
 leer o a la que se debe escribir.
 
 \subsection{Conjunto de Instrucciones IAS}
-\label{sec:org39a6a77}
+\label{sec:org328923a}
 
 Complete la Tabla \ref{tab:tablaISA-IAS}  de instrucciones del computador IAS
 \autocite[p.47]{stallings2006esp} usando la notación RTL\footnote{Register Transfer Language o Lenguaje de Transferencia de Registros.}. Se suministra
@@ -149,7 +149,7 @@ sobre las palabras clave.
 \newpage
 
 \subsection{Ejercicio}
-\label{sec:orgb0cade5}
+\label{sec:org9ed678d}
 
 En la máquina IAS, las instrucciones se dividen en dos segmentos:
 i) izquierdo, desde el bit 0 a 19, y ii) derecho, desde el bit 20 al 39. Primero
@@ -158,12 +158,12 @@ contador de programa inicia en la posición \([PC] \leftarrow 300\). El conjunto
 instrucciones del computador o ISA\footnote{Instruction Set Architecture: conjunto de instrucciones que la máquina IAS puede interpretar y ejecutar.} está definido en la Tabla
 \ref{tab:tablaISA-IAS}. A fin de terminar el programa, se agrega la
 instrucción \texttt{0x99} que lleva al computador al estado de HALT. Conteste las
-siguientes preguntas considerando la Tabla \ref{tab:org33a771e} como el
+siguientes preguntas considerando la Tabla \ref{tab:org4bb7dd4} como el
 mapa de memoria de la máquina y obtenga el programa en lenguaje ensamblador y en
 RTL.
 
 \begin{table}[htbp]
-\caption{\label{tab:org33a771e}Mapa de Memoria}
+\caption{\label{tab:org4bb7dd4}Mapa de Memoria}
 \centering
 \begin{tabular}{rrrrr}
 \hline
@@ -181,56 +181,75 @@ Dirección & \(Opcode_1\) & \(X_1\) & \(Opcode_2\) & \(X_2\)\\[0pt]
 \end{table}
 
 \subsubsection{Preguntas}
-\label{sec:orgc3383de}
+\label{sec:orgd661125}
 
 \begin{enumerate}
 \item ¿Qué resultado se tiene al final en el registro del acumulador?
 
 Respuesta:
-\([AC] \leftarrow ???\)
+\([AC] \leftarrow 0xFFFFFFFFFD\)
 
 \item ¿Se sobrescribe algún registro como resultado de la ejecución? Si
 es verdadero, indique qué registro y con qué valor.
 Respuesta:
 \begin{itemize}
-\item \([940] \leftarrow ???\)
-\item \([941] \leftarrow ???\)
-\item \([AC] \leftarrow ???\)
+\item \([940] \leftarrow 0x0000000003\)
+\item \([941] \leftarrow 0x0000000006\)
+\item \([AC] \leftarrow 0xFFFFFFFFFD\)
 \end{itemize}
 
 \item ¿Cuál es el valor del bit de Carry? ¿Qué operación modifica el bit?
 Respuesta:
 \begin{itemize}
-\item \(Carry = ???\)
+\item \(Carry = 1\)
 
-\item 
+\item \([AC] \leftarrow [AC]-[941]\)
+\item \([AC] \leftarrow 0x0000000005-0x0000000002\)
 \end{itemize}
 \end{enumerate}
 
 \subsubsection{Código RTL}
-\label{sec:org9e2e97c}
+\label{sec:org9ea9cce}
 
 Escriba en notación de transferencia de registros el programa que
 ejecuta el computador IAS.
 
 \begin{itemize}
 \item \([AC] \leftarrow [940]\)
-\item \ldots{}
+\begin{itemize}
+\item \([AC] \leftarrow [AC]-[941]\)
+\item \([940] \leftarrow [AC]\)
+\item \([AC] \leftarrow [AC]\times 2\)
+\item \([941] \leftarrow [AC]\)
+\item \([AC] \leftarrow -[940]\)
+\item \([940] \leftarrow [AC]\)
+\item \([IR] \leftarrow HALT\)
+\end{itemize}
 \end{itemize}
 
 
 \subsubsection{Código Assembler}
-\label{sec:orgcbe6b1c}
+\label{sec:org025bbbc}
 
 Escriba el código Assembler del programa que ejecuta el computador IAS.
 
 \begin{verbatim}
 LOAD M(940)
+SUB M(941)
+
+STOR M(940)
+LSH
+
+STOR M(941)
+LOAD -M(940)
+
+STOR M(940)
+HALT
 
 \end{verbatim}
 
 \section{Equipo de Trabajo}
-\label{sec:org0ca8e18}
+\label{sec:orgf509056}
 
 Complete la información de los integrantes del grupo.
 
@@ -240,31 +259,31 @@ Complete la información de los integrantes del grupo.
 Nombre & Email & Rol\\[0pt]
 \hline
 Joset Muela & joset.muela@epn.edu.ec & lider\\[0pt]
-Anthony Erazo &  & colaborador\\[0pt]
-Dylan Zuñiga &  & colaborador\\[0pt]
+Anthony Erazo & anthony.erazo01@epn.edu.ec & colaborador\\[0pt]
+Dylan Zuñiga & dylan.zuniga@epn.edu.ec & colaborador\\[0pt]
 \hline
 \end{tabular}
 \end{center}
 
-\section{Verificación de Entregables [0\%]}
-\label{sec:org22ea38d}
+\section{Verificación de Entregables [100\%]}
+\label{sec:orgf01c362}
 
 Ejecute \texttt{C-c C-c} sobre los ítems de tarea según se hayan cumplido o
 no. Si un ítem no pudo realizarse, anote en la sección de problemas
 las razones.
 
 \begin{itemize}
-\item[{$\square$}] Tabla de instrucciones IAS completada.
-\item[{$\square$}] Preguntas del ejercicio respondidas.
-\item[{$\square$}] Código RTL completo.
-\item[{$\square$}] Código Assembler completo.
-\item[{$\square$}] Revisión de ortografía con \texttt{ispell-buffer}.
-\item[{$\square$}] Exportación a PDF con \texttt{M-x org-latex-export-to-pdf}.
-\item[{$\square$}] Subir al aula virtual archivo \texttt{.org} y \texttt{.pdf}.
+\item[{$\boxtimes$}] Tabla de instrucciones IAS completada.
+\item[{$\boxtimes$}] Preguntas del ejercicio respondidas.
+\item[{$\boxtimes$}] Código RTL completo.
+\item[{$\boxtimes$}] Código Assembler completo.
+\item[{$\boxtimes$}] Revisión de ortografía con \texttt{ispell-buffer}.
+\item[{$\boxtimes$}] Exportación a PDF con \texttt{M-x org-latex-export-to-pdf}.
+\item[{$\boxtimes$}] Subir al aula virtual archivo \texttt{.org} y \texttt{.pdf}.
 \end{itemize}
 
 \subsection{Problemas con la tarea / logísticos}
-\label{sec:orgc66d80a}
+\label{sec:org9a2fbb1}
 
 \begin{itemize}
 \item Tarea \(X_1\) no pudo completarse debido a:

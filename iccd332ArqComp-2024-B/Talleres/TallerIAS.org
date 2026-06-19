@@ -185,7 +185,7 @@ RTL.
    - $Carry = 1$
 
    - $[AC] \leftarrow [AC]-[941]$
-     $[AC] \leftarrow 0x0000000005-0x0000000002$
+   - $[AC] \leftarrow 0x0000000005-0x0000000002$
 
 *** Código RTL
 
@@ -225,15 +225,15 @@ HALT
 
 Complete la información de los integrantes del grupo.
 
-|---------------+------------------------- +-------------|
-| Nombre        | Email                    | Rol         |
-|---------------+------------------------- +-------------|
-| Joset Muela   | joset.muela@epn.edu.ec   | lider       |
-| Anthony Erazo | anthony.erazo@epn.edu.ec | colaborador |
-| Dylan Zuñiga  | dylan.zuniga@epn.edu.ec  | colaborador |
-|---------------+------------------------- +-------------|
+|---------------+----------------------------+-------------|
+| Nombre        | Email                      | Rol         |
+|---------------+----------------------------+-------------|
+| Joset Muela   | joset.muela@epn.edu.ec     | lider       |
+| Anthony Erazo | anthony.erazo01@epn.edu.ec | colaborador |
+| Dylan Zuñiga  | dylan.zuniga@epn.edu.ec    | colaborador |
+|---------------+----------------------------+-------------|
 
-* Verificación de Entregables [0%]
+* Verificación de Entregables [100%]
 
 Ejecute ~C-c C-c~ sobre los ítems de tarea según se hayan cumplido o
 no. Si un ítem no pudo realizarse, anote en la sección de problemas
