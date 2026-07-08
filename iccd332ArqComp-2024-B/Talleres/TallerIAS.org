@@ -187,6 +187,7 @@ RTL.
    - $[AC] \leftarrow [AC]-[941]$
    - $[AC] \leftarrow 0x0000000005-0x0000000002$
 
+
 *** Código RTL
 
 Escriba en notación de transferencia de registros el programa que
