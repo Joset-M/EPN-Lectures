@@ -1,0 +1,223 @@
+% Created 2026-07-10 Fri 01:29
+% Intended LaTeX compiler: pdflatex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+
+\usepackage{fancyhdr}
+\usepackage[top=25mm, left=25mm, right=25mm]{geometry}
+\usepackage{longtable}
+\fancyhead[R]{}
+\setlength\headheight{43.0pt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, ]{babel}
+\usepackage[backend=biber]{biblatex}
+
+\author{Joset Muela, Dylan Zuñiga, Anthony Erazo}
+\date{2026-07-10}
+\title{Booteo de Sistema Operativo Linux}
+\hypersetup{
+ pdfauthor={Joset Muela, Dylan Zuñiga, Anthony Erazo},
+ pdftitle={Booteo de Sistema Operativo Linux},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.7.5)}, 
+ pdflang={Español}}
+\begin{document}
+
+\maketitle
+\fancyhead[C]{\includegraphics[scale=0.05]{../images/logoEPN.jpg}\\
+ESCUELA POLITÉCNICA NACIONAL\\FACULTAD DE INGENIERÍA DE SISTEMAS\\
+ARQUITECTURA DE COMPUTADORES}
+\thispagestyle{fancy}
+
+
+
+
+\section{Objetivos}
+\label{sec:org6cb291e}
+
+\begin{itemize}
+\item Aprender a  bootear un sistema operativo Linux
+
+\item Aprender sobre la secuencia de arranque de un computador como la
+BIOS y la UEFI
+\end{itemize}
+
+\section{Instrucciones}
+\label{sec:orgf4b4518}
+\begin{enumerate}
+\item Siga el tutorial para la creación de un booteable de Ubuntu como se
+indica en la unidad 9 en el archivo Arranque Ubuntu\footnote{Dependiendo de las características de su computador debe
+verificar si al crear el medio booteable para Ubuntu, su sistema
+reconoce o acepta para el \emph{Target System}}.
+
+\item Realice un respaldo del código de \emph{BitLocker} utilizando un command
+prompt de Windows con permisos de administrador\footnote{Si no respalda el código, no podrá arrancar el disco luego de
+reiniciar. Más información en: \href{https://www.partitionwizard.com/disk-recovery/bitlocker-recovery-key-bypass.html }{https://www.partitionwizard.com/disk-recovery/bitlocker-recovery-key-bypass.html}}:
+
+\begin{verbatim}
+    manage-bde-protectors C:-get
+\end{verbatim}
+
+\item Utilizando su computador o el del laboratorio, siga los pasos
+indicados para obtener el booteo desde el USB con el Sistema
+Operativo de Ubuntu
+
+\item Realice el boot de Ubuntu desde la memoria USB externa y
+seleccione la opción de \emph{Probar Sistema Operativo}.
+\item Una vez ingresado active un terminal de Ubuntu: \texttt{Ctrl+ALT+T} y
+obtenga las características del computador mediante la ejecución de
+los comandos: \texttt{lscpu}, \texttt{lsb\_release -a} y \texttt{lspci}. Obtenga capturas
+de la ejecución de los comandos. Luego abra este archivo en WSL y
+ejecute los comandos desde los bloques shell. Para insertar un
+bloque puede usar la combinación \texttt{C-c C-,}, escoja la opción \texttt{src}
+e indique que es del tipo shell.
+\end{enumerate}
+
+\section{Desarrollo Emacs}
+\label{sec:orgae4f420}
+Se sugiere utilizar la opción \texttt{:fontsize
+scriptsize} para dar formato a la ejecución del comando. Por ejemplo,
+considere:
+
+\begin{verbatim}
+whoami
+\end{verbatim}
+
+\begin{verbatim}
+leningfe
+\end{verbatim}
+
+\subsection{Comando \texttt{lsb\_release}}
+\label{sec:org36af823}
+\begin{verbatim}
+    lsb_release -a
+\end{verbatim}
+
+\begin{center}
+\begin{tabular}{ll}
+Distributor ID: & Ubuntu\\[0pt]
+Description: & Ubuntu 22.04.4 LTS\\[0pt]
+Release: & 22.04\\[0pt]
+Codename: & jammy\\[0pt]
+\end{tabular}
+\end{center}
+
+
+\subsection{Comando \texttt{lspci}}
+\label{sec:org9192909}
+\begin{verbatim}
+   lspci
+\end{verbatim}
+
+\begin{verbatim}
+64cc:00:00.0 SCSI storage controller: Red Hat, Inc. Virtio 1.0 console (rev 01)
+a731:00:00.0 System peripheral: Red Hat, Inc. Virtio file system (rev 01)
+e689:00:00.0 3D controller: Microsoft Corporation Basic Render Driver
+\end{verbatim}
+
+
+\subsection{Comando \texttt{lscpu}}
+\label{sec:org7ee376f}
+\begin{verbatim}
+   lscpu
+\end{verbatim}
+
+\begin{verbatim}
+  Architecture:                            x86_64
+  CPU op-mode(s):                          32-bit, 64-bit
+  Address sizes:                           48 bits physical, 48 bits virtual
+  Byte Order:                              Little Endian
+  CPU(s):                                  2
+  On-line CPU(s) list:                     0,1
+  Vendor ID:                               AuthenticAMD
+  Model name:                              AMD A9-9420 RADEON R5, 5 COMPUTE CORES 2C+3G
+  CPU family:                              21
+  Model:                                   112
+  Thread(s) per core:                      1
+  Core(s) per socket:                      2
+  Socket(s):                               1
+  Stepping:                                0
+  BogoMIPS:                                5988.75
+  Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw xop fma4 topoext ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 xsaveopt virt_ssbd arat
+  Hypervisor vendor:                       Microsoft
+  Virtualization type:                     full
+  L1d cache:                               64 KiB (2 instances)
+  L1i cache:                               192 KiB (2 instances)
+  L2 cache:                                2 MiB (2 instances)
+  NUMA node(s):                            1
+  NUMA node0 CPU(s):                       0,1
+  Vulnerability Gather data sampling:      Not affected
+  Vulnerability Ghostwrite:                Not affected
+  Vulnerability Indirect target selection: Not affected
+  Vulnerability Itlb multihit:             Not affected
+  Vulnerability L1tf:                      Not affected
+  Vulnerability Mds:                       Not affected
+  Vulnerability Meltdown:                  Not affected
+  Vulnerability Mmio stale data:           Not affected
+  Vulnerability Old microcode:             Not affected
+  Vulnerability Reg file data sampling:    Not affected
+  Vulnerability Retbleed:                  Mitigation; untrained return thunk; SMT disabled
+  Vulnerability Spec rstack overflow:      Not affected
+  Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+  Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+  Vulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+  Vulnerability Srbds:                     Not affected
+  Vulnerability Tsa:                       Not affected
+  Vulnerability Tsx async abort:           Not affected
+  Vulnerability Vmscape:                   Not affected
+\end{verbatim}
+
+\section{Desarrollo Capturas}
+\label{sec:orga6a519e}
+Coloque las capturas de los resultados obtenidos en los
+terminales. 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{../images/lscpu1.jpeg}
+\caption{\label{fig:orgd4d277c}Captura del comando lscpu - parte 1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{../images/lscpu2.jpeg}
+\caption{\label{fig:org4d57647}Captura del comando lscpu - parte 2}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{../images/lsb_realese.jpeg}
+\caption{\label{fig:orgee7764f}Captura del comando lsb\textsubscript{release}}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{..//images/lspci.jpeg}
+\caption{\label{fig:orgf244c70}Captura del comando lspci}
+\end{figure}
+
+
+\clearpage
+
+\section{Consulta}
+\label{sec:org85d4d81}
+Describa que hacen y para qué sirven los comandos utilizados en la práctica
+
+\begin{description}
+\item[{lscpu}] Muestra la información detallada sobre la arquitectura del procesador. Sirve para identificar características claves del hardware, fabricante, modelo, cantidad de núcleos y memoria caché, es muy útil para diagnosticar las capacidades del sistema.
+\item[{lsb$\backslash$\textsubscript{release} -a}] Muestra información específica sobre la distribución de Linux que está instalada. El parámetro '-a' indica que imprima todos los detalles posibles.
+\item[{lspci}] Es una herramienta que lista todos los buses PCI del computador y los dispositivos de hardware que están conectados a ellos. Sirve para identificar componentes físicos internos de la máquina, es fundamental para tareas de diagnóstico de hardware y búsqueda de controladores o drivers.
+\end{description}
+\end{document}

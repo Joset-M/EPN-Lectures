@@ -4,9 +4,9 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
 #+options: tasks:t tex:t timestamp:t title:t toc:nil todo:t |:t
 #+title: Booteo de Sistema Operativo Linux
-#+date: 2025-XX-XX
-#+author: COLOQUE SU NOMBRE
-#+email: nombre.apellido@epn.edu.ec
+#+date: 2026-07-10
+#+author: Joset Muela, Dylan Zuñiga, Anthony Erazo
+#+email: joset.muela@epn.edu.ec, dylan.zuñiga@epn.edu.ec, anthony.erazo01@epn.edu.ec
 #+language: Español
 #+select_tags: export
 #+exclude_tags: noexport
@@ -64,6 +64,8 @@ ARQUITECTURA DE COMPUTADORES}
    #+begin_src shell
     manage-bde-protectors C:-get
    #+end_src
+
+   #+RESULTS:
    
 3. Utilizando su computador o el del laboratorio, siga los pasos
    indicados para obtener el booteo desde el USB con el Sistema
@@ -88,6 +90,9 @@ considere:
 whoami
 #+end_src
 
+#+RESULTS:
+: anthony-el
+
 #+RESULTS: :fontsize scriptsize
 : leningfe
 
@@ -95,6 +100,8 @@ whoami
    #+begin_src shell
     lsb_release -a
    #+end_src
+
+   #+RESULTS:
 
    #+RESULTS: :fontsize scriptsize
    | Distributor ID: | Ubuntu             |
@@ -104,34 +111,105 @@ whoami
 
 
 ** Comando ~lspci~
+  #+begin_src shell :results output
+   lspci
+  #+end_src
+
+  #+RESULTS:
+  : 64cc:00:00.0 SCSI storage controller: Red Hat, Inc. Virtio 1.0 console (rev 01)
+  : a731:00:00.0 System peripheral: Red Hat, Inc. Virtio file system (rev 01)
+  : e689:00:00.0 3D controller: Microsoft Corporation Basic Render Driver
+
+  #+RESULTS: fontsize scriptsize
+  : 64cc:00:00.0 SCSI storage controller: Red Hat, Inc. Virtio 1.0 console (rev 01)
+  : a731:00:00.0 System peripheral: Red Hat, Inc. Virtio file system (rev 01)
+  : e689:00:00.0 3D controller: Microsoft Corporation Basic Render Driver
 
 
+** Comando ~lscpu~
+ #+begin_src shell :results output
+   lscpu
+  #+end_src
 
-** Comando ~lscpu~   
+  #+RESULTS: fontsize scriptsize 
+  #+begin_example
+  Architecture:                            x86_64
+  CPU op-mode(s):                          32-bit, 64-bit
+  Address sizes:                           48 bits physical, 48 bits virtual
+  Byte Order:                              Little Endian
+  CPU(s):                                  2
+  On-line CPU(s) list:                     0,1
+  Vendor ID:                               AuthenticAMD
+  Model name:                              AMD A9-9420 RADEON R5, 5 COMPUTE CORES 2C+3G
+  CPU family:                              21
+  Model:                                   112
+  Thread(s) per core:                      1
+  Core(s) per socket:                      2
+  Socket(s):                               1
+  Stepping:                                0
+  BogoMIPS:                                5988.75
+  Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw xop fma4 topoext ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 xsaveopt virt_ssbd arat
+  Hypervisor vendor:                       Microsoft
+  Virtualization type:                     full
+  L1d cache:                               64 KiB (2 instances)
+  L1i cache:                               192 KiB (2 instances)
+  L2 cache:                                2 MiB (2 instances)
+  NUMA node(s):                            1
+  NUMA node0 CPU(s):                       0,1
+  Vulnerability Gather data sampling:      Not affected
+  Vulnerability Ghostwrite:                Not affected
+  Vulnerability Indirect target selection: Not affected
+  Vulnerability Itlb multihit:             Not affected
+  Vulnerability L1tf:                      Not affected
+  Vulnerability Mds:                       Not affected
+  Vulnerability Meltdown:                  Not affected
+  Vulnerability Mmio stale data:           Not affected
+  Vulnerability Old microcode:             Not affected
+  Vulnerability Reg file data sampling:    Not affected
+  Vulnerability Retbleed:                  Mitigation; untrained return thunk; SMT disabled
+  Vulnerability Spec rstack overflow:      Not affected
+  Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+  Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+  Vulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+  Vulnerability Srbds:                     Not affected
+  Vulnerability Tsa:                       Not affected
+  Vulnerability Tsx async abort:           Not affected
+  Vulnerability Vmscape:                   Not affected
+  #+end_example
 
 * Desarrollo Capturas
 Coloque las capturas de los resultados obtenidos en los
-terminales. Para esto recuerde utilizar dobles corchetes y escribir el
-/path/ hacia la imagen. Pruebe a utilizar YASnipet para generar el
-siguiente código para descripción de la figura. Para esto puede
-escriba ~fig_~ seguido de la combinación de teclas ~C-TAB~, finalmente
-coloque la dirección de la imagen.
+terminales. 
 
-#+caption: lscpu
+#+caption: Captura del comando lscpu - parte 1
 #+attr_latex: scale=0.75
 #+label: fig:lscpu
+[[../images/lscpu1.jpeg]]
 
-#+begin_src elisp
-[[./images/lscpu.png]]
-#+end_src
+#+caption: Captura del comando lscpu - parte 2
+#+attr_latex: scale=0.75
+#+label: fig:lscpu
+[[../images/lscpu2.jpeg]]
 
+#+caption: Captura del comando lsb_release
+#+attr_latex: scale=0.75
+#+label: fig:lsb_release
+[[../images/lsb_realese.jpeg]]
+
+#+caption: Captura del comando lspci
+#+attr_latex: scale=0.75
+#+label: fig:lspci
+[[..//images/lspci.jpeg]]
+
+
+#+LATEX: \clearpage
 
 * Consulta
 Describa que hacen y para qué sirven los comandos utilizados en la práctica
 
-- lscpu ::
-- lsb\_release -a ::
-- lspci :: 
+- lscpu :: Muestra la información detallada sobre la arquitectura del procesador. Sirve para identificar características claves del hardware, fabricante, modelo, cantidad de núcleos y memoria caché, es muy útil para diagnosticar las capacidades del sistema.  
+- lsb\_release -a :: Muestra información específica sobre la distribución de Linux que está instalada. El parámetro '-a' indica que imprima todos los detalles posibles.   
+- lspci :: Es una herramienta que lista todos los buses PCI del computador y los dispositivos de hardware que están conectados a ellos. Sirve para identificar componentes físicos internos de la máquina, es fundamental para tareas de diagnóstico de hardware y búsqueda de controladores o drivers.   
 
 
 * Footnotes
