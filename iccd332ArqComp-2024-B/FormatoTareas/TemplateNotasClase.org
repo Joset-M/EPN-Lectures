@@ -4,9 +4,9 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
 #+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
 #+title: Plantilla para Toma de Notas en Clase
-#+date: 2024-07-
-#+author: COLOQUE SU NOMBRE
-#+email: coloque.su.nombre@epn.edu.ec
+#+date: 2026-06-17
+#+author: Joset Nicoly Muela Criollo
+#+email: joset.muela@epn.edu.ec
 #+language: Español
 #+select_tags: export
 #+exclude_tags: noexport
@@ -43,74 +43,75 @@ ESCUELA POLITÉCNICA NACIONAL\\FACULTAD DE INGENIERÍA DE SISTEMAS\\
 ARQUITECTURA DE COMPUTADORES}
 \thispagestyle{fancy}
 #+end_export
-
-
-#+begin_comment
-Este comentario contiene la estructura básica para toma de notas de
-acuerdo a la metodología explicada por la Universidad de Cornell.
-* 2024-xx-xx Título de la clase/charla
+* 2026-06-17 Elemento de Diseño de un Bus
 ** Preguntas y Términos clave (Cue):
-- término clave1 ::
-- término clave2 ::
+- ¿Qué clasifica a un bus dedicado de uno multiplexado? ::
+- Tipos de Arbitraje ::
+- Temporización Síncrona vs Asíncrona ::
+- Importancia del ancho del bus ::
+- Tipos de transferencia de datos ::
 ** Notas (Notes):
-- nota1
-- nota2
-  - subnota
-  - subnota
-- nota3
-  1. numerado
-  2. numerado
-** Resumen (Summary):
-Aquí se realiza un breve resumen
-#+end_comment
-* 2024-xx-xx Título de la clase/charla
-** Preguntas y Términos clave (Cue):
-- ¿qué es el sistema de notas de U. Cornell? ::
-- TODO :: ????
-** Notas (Notes):
-- Sistema eficiente de toma de apuntes
-- Divide la hoja en tres secciones:
-  1. *Sección para preguntas*: apuntar todo lo que no se entiende o la
-     pregunta que surge de la charla
-  2. *Sección para notas: se coloca las notas normales. Aquí podemos
-     explotar Emacs y Programación literaria para incluir código de programación
-  3. *Resumen*: Una vez terminada la clase, en una fase posterior y
-     usando las notas tomadas, y resolviendo las inquietudes, se
-     escribe un resumen de la clase.
-- Emacs se puede usar para facilitar esta tarea dividiendo la pantalla mediante:
-  - Horizontal: ~C-x 2~
-  - Vertical: ~C-x 3~
-  - Cambiar de ventana ~C-x o~
-  - Cerrar una ventana que ya no quiero ~C-x 0~
-  - Cerrar todas las demás ventanas excepto en la que el cursor está ~C-x 1~
-- Una desventaja de Emacs es que no podemos graficar en la pantalla
-- Una ventaja es que podemos escribir la notación matemática usando \LaTeX
-- Una ventaja es que podemos escribir el código de programación de
-  cualquier lenguaje de programación y testearlo directamente desde el archivo.
-  1. numerado
-  2. numerado
-- Emacs nos permite adicionar el ~TODO~ para marcar las tareas y
-  controlar cuáles ya están realizadas. Para esto generamos más
-  viñetas con el [ ]. Si la tarea ya está realizada podemos dar ~C-c
-  C-c~ en la línea y cambiar el estado de la tarea a realizada. Pruebe
-  en el ejemplo.
+- *Clasificación por Tipo de Líneas*:
+  - /Dedicadas/: Líneas físicas asignadas perman
+    entemente a una función ,buses independientes para datos y
+    direcciones. Ofrecen alto rendimiento pero incrementan el espacio
+    y costo.
+  - /Multiplexadas en el tiempo/: Las mismas líneas físicas se
+    comparten para distintas funciones en instantes de tiempo
+    diferentes, la misma línea envía la dirección al inicio del
+    ciclo y luego el dato. Ahorra pines y espacio, pero ralentiza el
+    sistema al requerir circuitos lógicos más complejos. 
+- *Métodos de Arbitraje (Control del medio compartido)*:
+  - /Centralizado/: Existe un único hardware dedicado, llamado
+    controlador del bus o árbitro, que recibe las peticiones y concede
+    el acceso al bus.
+  - /Distribuido/: No existe un nodo central. Los módulos incluyen
+    lógica de control propia y cooperan conjuntamente para decidir el
+    acceso mediante algoritmos distribuidos.
+- *Esquemas de Temporización*:
+  - /Síncrona/: Las acciones en el bus están regidas por una señal de
+    reloj global (tren de pulsos lógicos $0$ y $1$). Todos los
+    dispositivos se sincronizan con este reloj. Es rápida y simple,
+    pero obliga a que todo el bus trabaje a la velocidad del
+    dispositivo más lento.
+  - /Asíncrona/: No depende de un reloj. La secuencia de eventos
+    ocurre mediante un protocolo de "saludo" o /handshaking/ (un
+    evento dispara el siguiente: Petición $\rightarrow$
+    Confirmación). Es altamente flexible para mezclar dispositivos
+    rápidos y lentos, pero su hardware de control es complejo.
+- *Ancho del Bus*:
+  - /Bus de Datos/: Un mayor número de líneas físicas paralelas
+    permite transmitir palabras de datos más grandes en un solo ciclo,
+    impactando directamente en el rendimiento global.
+  - /Bus de Direcciones/: El ancho de este bus limita físicamente el
+    rango máximo de memoria principal direccionable directamente por
+    la CPU ($2^{\text{ancho}}$ bytes).
+    - *Tipos de Transferencia de Datos*:
+  - /Lectura/ y /Escritura/ clásicas de memoria o E/S.
+  - /Lectura-Modificación-Escritura/: Operación atómica (no
+    interrumpible) donde se lee un dato, se modifica y se reescribe
+    inmediatamente; fundamental para la sincronización de hilos o
+    semáforos en el Sistema Operativo.
+    
 ** Enlaces de Interés
-- [[https://lsc.cornell.edu/how-to-study/taking-notes/cornell-note-taking-system/][Página web de Cornell University sobre Toma de Notas]]
-- [[https://youtu.be/nX-xshA_0m8?si=20MELdipZ1cjRh2f][YouTube]]
+- [[https://lsc.cornell.edu/how-to-study/taking-notes/cornell-note-taking-system/][
+- [[https://biblioteca.univalle.edu.ni/files/original/c1b1f5d1c12abc60a246e2a0d784f7c9d163ee81.pdf][Libro William Stallings]]
 ** Resumen (Summary):
-Emacs ofrece una herramienta que nos permite combinar código y
-literatura así como aprovechar \LaTeX para escribir notación
-matemática. Mediante el uso de combinaciones de teclas se puede
-alternar entre distintas pantallas. Así por ejemplo, se puede dividir
-la pantalla en una región para apuntar las preguntas, otra para las
-notas y una tercera para el resumen. Algo que no incluye la estrategia
-de Cornell es apuntar las tareas. Pero esto lo podemos aprovechar con
-Emacs ~TODO~.
+El diseño de un bus implica un balance de ingeniería entre costo,
+espacio físico y rendimiento computacional. Los parámetros clave
+definidos por Stallings determinan la flexibilidad y velocidad del
+sistema: el arbitraje gestiona la competencia por el recurso
+compartido; la temporización define el método de coordinación lógica
+(reloj rígido vs handshake flexible); y el tipo de líneas (dedicadas o
+multiplexadas) junto al ancho físico determinan directamente las
+capacidades máximas de transferencia de datos y de direccionamiento de
+memoria del computador.
 
 
-* TODO Mis Tareas [50%]
+
+* TODO Mis Tareas [100%]
 - [X] Leer este documento
-- [ ] Escribir el resumen  de la exposición 1
+- [X] Escribir el resumen  de la exposición 1
 
 #+print_bibliography: 
  
